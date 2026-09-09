@@ -50,49 +50,11 @@ El requisito central del enunciado es que **cada flujo viaje por un protocolo de
 - **Chat bidireccional concurrente**, con burbujas estilo mensajería y desplazamiento automático.
 - **Control explícito de la transmisión** (iniciar / detener) sin afectar la conexión de chat.
 - **Indicadores de estado en pantalla**: conexión, transmisión activa o detenida, y FPS recibidos en vivo.
-
-### Construido con
-
-| Tecnología | Versión / Detalle |
-| :--- | :--- |
-| Unity | `6000.5.7f1` |
-| Universal Render Pipeline | `17.5.0` |
-| TextMesh Pro | Incluido en el proyecto |
-| `System.Net.Sockets` | `TcpListener`, `TcpClient`, `UdpClient` |
-| Codificación de imagen | `Texture2D.EncodeToJPG` / `Texture2D.LoadImage` |
-| Captura | `WebCamTexture` |
-
 ---
 
 ## Arquitectura
 
-La aplicación se compone de **dos escenas cargadas simultáneamente** mediante *multi-scene editing*: una representa el servidor y la otra el cliente. Ambas se ejecutan en la misma máquina sobre la interfaz de *loopback* (`127.0.0.1`), lo que permite observar los dos extremos en pantalla al mismo tiempo.
-
-```mermaid
-flowchart LR
-    subgraph SRV["Servidor — Tcp_Server.unity"]
-        direction TB
-        CAM["WebCamTexture<br/>640x480"]
-        JPG["EncodeToJPG<br/>calidad 40"]
-        FRG["Fragmentación<br/>bloques de 1200 B"]
-        TX["WebcamUdpSender"]
-        SCH["TCPServer<br/>+ TCPServerUI"]
-        CAM --> JPG --> FRG --> TX
-    end
-
-    subgraph CLI["Cliente — Tcp_Client.unity"]
-        direction TB
-        RX["WebcamUdpReceiver"]
-        ASM["Reensamblado<br/>por frameId"]
-        DEC["LoadImage<br/>→ Texture2D"]
-        SCR["RawImage"]
-        CCH["TCPClient<br/>+ UI_TCPClient"]
-        RX --> ASM --> DEC --> SCR
-    end
-
-    TX -- "UDP 5556 · frames" --> RX
-    SCH <-- "TCP 5555 · chat" --> CCH
-```
+La aplicación se compone de **dos escenas cargadas simultáneamente** mediante *multi-scene editing*: una representa el servidor y la otra el cliente. Ambas se ejecutan en la misma máquina, lo que permite observar los dos extremos en pantalla al mismo tiempo.
 
 ### Scripts en uso
 
@@ -125,14 +87,6 @@ flowchart LR
 UDP entrega **datagramas independientes y de tamaño acotado**. Una imagen JPEG de 640×480 pesa habitualmente entre 20 KB y 40 KB, muy por encima de la MTU típica de 1500 bytes, por lo que enviarla en un único datagrama provoca fragmentación a nivel IP: si se pierde un solo fragmento, se pierde la imagen completa y el sistema no tiene forma de detectarlo.
 
 Por eso se define un **protocolo de aplicación propio**: cada frame se parte en bloques de 1200 bytes y cada bloque viaja con una cabecera de 8 bytes que permite reconstruirlo en destino.
-
-```text
- offset:  0        4        6        8                            ≤ 1208 B
-          ├────────┼────────┼────────┼─────────────────────────────┤
-          │frameId │chunkIdx│chunkCnt│        payload JPEG         │
-          │ int32  │ uint16 │ uint16 │        ≤ 1200 bytes         │
-          └────────┴────────┴────────┴─────────────────────────────┘
-```
 
 | Campo | Tipo | Descripción |
 | :--- | :--- | :--- |
@@ -224,31 +178,6 @@ Los dos flujos son **independientes en socket, en puerto y en modelo de ejecuci�
 **Robustez en Windows.** Ambos sockets UDP desactivan `SIO_UDP_CONNRESET`. Sin esta medida, un datagrama enviado a un puerto que todavía no escucha genera un ICMP *port unreachable* que hace fallar la siguiente operación de recepción del socket, interrumpiendo el bucle de forma permanente. Adicionalmente, los ciclos de recepción capturan cualquier excepción y se rearman, y el saludo inicial del cliente se reenvía periódicamente hasta recibir el primer frame, lo que hace el arranque independiente del orden en que se inicien ambos extremos.
 
 ---
-
-## Instrucciones de ejecución
-
-### Requisitos previos
-
-- **Unity 6000.5.7f1** o superior (Unity Hub).
-- Una **cámara web** disponible en el equipo.
-- Sistema operativo Windows, macOS o Linux.
-
-### Instalación
-
-```bash
-git clone https://github.com/juanestebanmendez88-hash/Chat-TCP-UDP-base.git
-cd Chat-TCP-UDP-base
-```
-
-Abre la carpeta como proyecto desde **Unity Hub**. La primera importación puede tardar varios minutos.
-
-### Puesta en marcha
-
-1. Abre la escena **`Assets/Chat_TCP_UDP/Scenes/TCP/Tcp_Server.unity`**.
-2. En el panel *Project*, **arrastra** `Assets/Chat_TCP_UDP/Scenes/TCP/Tcp_Client.unity` a la ventana *Hierarchy* para cargarla de forma **aditiva**. Ambos paneles quedan visibles a la vez.
-3. Pulsa **Play**.
-4. Sigue esta secuencia en la interfaz:
-
    | Paso | Acción | Resultado esperado |
    | :--- | :--- | :--- |
    | 1 | **Start Server** (panel servidor) | Abre el socket TCP `5555` y el UDP `5556`; aparece la vista previa de la cámara. Estado: *Servidor activo - sin cliente*. |
@@ -309,10 +238,8 @@ El contador de FPS constituye la prueba de que la recepción es continua y en ti
 | Vista | Imagen |
 | :--- | :--- |
 | Aplicación completa: video y chat simultáneos | ![Vista general](docs/img/01-vista-general.png) |
-| Panel del servidor con transmisión activa | ![Servidor](docs/img/02-servidor.png) |
-| Panel del cliente recibiendo frames | ![Cliente](docs/img/03-cliente.png) |
-| Chat bidireccional durante la transmisión | ![Chat](docs/img/04-chat.png) |
 | Estados de conexión y transmisión detenida | ![Estados](docs/img/05-estados.png) |
+| Chat Bidireccional | ![Chat](docs/img/05-chat.png) |
 
 > Las imágenes se ubican en `docs/img/` en formato `.png`.
 
@@ -356,12 +283,12 @@ Chat-TCP-UDP-base/
 
 ## Autores
 
-| Nombre | Rol |
-| :--- | :--- |
-| Juan Esteban Méndez | Desarrollo |
-| *(integrante 2)* | — |
-| *(integrante 3)* | — |
+| Nombre | 
+| :--- |
+| Juan Esteban Méndez | 
+| Natalia Noguera Franco| 
+| Karen quemba |
 
-**Repositorio:** <https://github.com/juanestebanmendez88-hash/Chat-TCP-UDP-base>
+**Repositorio:** <https://www.youtube.com/watch?v=2EvKIw5CMZo
 
-Proyecto académico desarrollado como *fork* de la base **Chat-TCP-UDP-base** para el curso de Servicios Telemáticos, Ingeniería Multimedia.
+Proyecto académico desarrollado como *fork* de la base **Chat-TCP-UDP-base** para el curso de Servicios, Ingeniería Multimedia.
