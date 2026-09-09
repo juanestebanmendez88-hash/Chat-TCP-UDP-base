@@ -237,8 +237,8 @@ El contador de FPS constituye la prueba de que la recepción es continua y en ti
 
 | Vista | Imagen |
 | :--- | :--- |
-| Aplicación completa: video y chat simultáneos | ![Vista general](docs/img/1-vista-general.png) |
-| Estados de conexión y transmisión detenida | ![Estados](docs/img/05-estados.png) |
+| Aplicación completa: video y chat simultáneos | ![Vista general](docs/img/05-estados.png) |
+| Estados de conexión y transmisión detenida | ![Estados](docs/img/1-vista-general.png) |
 | Chat Bidireccional | ![Chat](docs/img/05-chat.png) |
 
 > Las imágenes se ubican en `docs/img/` en formato `.png`.
