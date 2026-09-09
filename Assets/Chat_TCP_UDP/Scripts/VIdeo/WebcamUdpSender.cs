@@ -6,44 +6,41 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Captura la webcam, la comprime a JPG y la envia por UDP partida en trozos.
-// El chat va aparte por TCP: esto usa su propio socket y su propio puerto.
 public class WebcamUdpSender : MonoBehaviour
 {
     [Header("Red")]
-    public int port = 5556;                 // puerto UDP solo para el video (el chat usa TCP en 5555)
+    public int port = 5556;
 
     [Header("Captura")]
     public int requestedWidth = 640;
     public int requestedHeight = 480;
-    public int fps = 20;                    // frames por segundo que se envian
+    public int fps = 20;
     [Range(5, 90)] public int jpegQuality = 40;
 
     [Header("UI (opcional)")]
-    public RawImage localPreview;           // para verte a ti mismo en el panel del servidor
-    public TMP_Text streamButtonLabel;      // texto del boton Iniciar / Detener
-    public TMP_Text statusLabel;            // estado: sin cliente / cliente conectado / transmitiendo
+    public RawImage localPreview;
+    public TMP_Text streamButtonLabel;
+    public TMP_Text statusLabel;
 
     [Header("Debug")]
-    [SerializeField] private bool streaming; // ponlo en true a mano para probar antes de tener boton
+    [SerializeField] private bool streaming;
 
     private UdpClient socket;
-    private volatile IPEndPoint clientEndPoint;  // se llena cuando el cliente manda su "HELLO"
+    private volatile IPEndPoint clientEndPoint;
     private WebCamTexture webcam;
-    private Texture2D frameTexture;              // textura temporal para poder hacer EncodeToJPG
+    private Texture2D frameTexture;
     private Color32[] pixelBuffer;
 
     private int frameId;
     private float sendTimer;
     private float statusTimer;
 
-    private const int HeaderSize = 8;    // 4 bytes frameId + 2 chunkIndex + 2 chunkCount
-    private const int MaxPayload = 1200; // bytes de imagen por datagrama
+    private const int HeaderSize = 8;
+    private const int MaxPayload = 1200;
 
-    // Se dispara desde el mismo boton "Start Server" del chat (segunda entrada en On Click).
     public void StartServer()
     {
-        if (socket != null) return;            // ya iniciado
+        if (socket != null) return;
 
         socket = new UdpClient(port);
         IgnoreUdpConnReset(socket);
@@ -52,7 +49,6 @@ public class WebcamUdpSender : MonoBehaviour
         Debug.Log("[VideoTX] Servidor de video en UDP " + port);
     }
 
-    // Windows: evita que un ICMP "port unreachable" haga que el proximo Receive lance excepcion.
     private static void IgnoreUdpConnReset(UdpClient client)
     {
         try
@@ -81,7 +77,6 @@ public class WebcamUdpSender : MonoBehaviour
         webcam.Play();
         if (localPreview != null) localPreview.texture = webcam;
 
-        // La webcam reporta width = 16 hasta que el dispositivo arranca de verdad.
         while (webcam.width <= 16) yield return null;
 
         frameTexture = new Texture2D(webcam.width, webcam.height, TextureFormat.RGB24, false);
@@ -89,7 +84,6 @@ public class WebcamUdpSender : MonoBehaviour
         Debug.Log($"[VideoTX] Webcam lista {webcam.width}x{webcam.height}");
     }
 
-    // Handshake: al primer datagrama que llega, aprendemos la direccion del cliente.
     private void OnHello(IAsyncResult ar)
     {
         try
@@ -102,11 +96,10 @@ public class WebcamUdpSender : MonoBehaviour
         catch (ObjectDisposedException) { return; }
         catch (Exception e) { Debug.LogWarning("[VideoTX] " + e.Message); }
 
-        try { socket.BeginReceive(OnHello, null); } // seguir escuchando por si el cliente reinicia
+        try { socket.BeginReceive(OnHello, null); }
         catch (ObjectDisposedException) { }
     }
 
-    // Para los botones de la UI.
     public void ToggleStreaming() { SetStreaming(!streaming); }
     public void StartStreaming()  { SetStreaming(true); }
     public void StopStreaming()   { SetStreaming(false); }
@@ -116,7 +109,7 @@ public class WebcamUdpSender : MonoBehaviour
         streaming = on;
         if (streamButtonLabel != null)
             streamButtonLabel.text = on ? "Detener transmision" : "Iniciar transmision";
-        statusTimer = 1f;   // forzar refresco del estado en el proximo Update
+        statusTimer = 1f;
     }
 
     void Update()
@@ -167,13 +160,13 @@ public class WebcamUdpSender : MonoBehaviour
             int size = Mathf.Min(MaxPayload, jpg.Length - offset);
 
             byte[] packet = new byte[HeaderSize + size];
-            BitConverter.GetBytes(frameId).CopyTo(packet, 0);             // 4 bytes
-            BitConverter.GetBytes((ushort)i).CopyTo(packet, 4);           // 2 bytes
-            BitConverter.GetBytes((ushort)chunkCount).CopyTo(packet, 6);  // 2 bytes
+            BitConverter.GetBytes(frameId).CopyTo(packet, 0);
+            BitConverter.GetBytes((ushort)i).CopyTo(packet, 4);
+            BitConverter.GetBytes((ushort)chunkCount).CopyTo(packet, 6);
             Buffer.BlockCopy(jpg, offset, packet, HeaderSize, size);
 
             try { socket.Send(packet, packet.Length, clientEndPoint); }
-            catch (SocketException) { /* cliente no disponible: se reintenta con el proximo frame */ }
+            catch (SocketException) {  }
         }
     }
 

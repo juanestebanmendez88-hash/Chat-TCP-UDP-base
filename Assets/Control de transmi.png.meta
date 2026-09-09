@@ -1,0 +1,845 @@
+fileFormatVersion: 2
+guid: 000a0fa74354a6243872e55b9fb374b4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5333090678908815963
+    second: Control de transmi_0
+  - first:
+      213: 6192719670092143406
+    second: Control de transmi_1
+  - first:
+      213: -7231860203595438187
+    second: Control de transmi_2
+  - first:
+      213: 8603291934110181512
+    second: Control de transmi_3
+  - first:
+      213: 4188571093236193251
+    second: Control de transmi_4
+  - first:
+      213: -6883486475792744729
+    second: Control de transmi_5
+  - first:
+      213: -8262885915916689807
+    second: Control de transmi_6
+  - first:
+      213: 3516599324388049415
+    second: Control de transmi_7
+  - first:
+      213: 305567810230823982
+    second: Control de transmi_8
+  - first:
+      213: 374217935411875368
+    second: Control de transmi_9
+  - first:
+      213: 1617320545428622841
+    second: Control de transmi_10
+  - first:
+      213: 3879837626894621379
+    second: Control de transmi_11
+  - first:
+      213: -7664118502856414954
+    second: Control de transmi_12
+  - first:
+      213: 5692048106170332592
+    second: Control de transmi_13
+  - first:
+      213: -4321992939127216461
+    second: Control de transmi_14
+  - first:
+      213: 2803625104344329222
+    second: Control de transmi_15
+  - first:
+      213: 4694300715912399231
+    second: Control de transmi_16
+  - first:
+      213: 6308084882326594106
+    second: Control de transmi_17
+  - first:
+      213: 3778043296789841207
+    second: Control de transmi_18
+  - first:
+      213: -2830425183634513306
+    second: Control de transmi_19
+  - first:
+      213: 2840517232092457669
+    second: Control de transmi_20
+  - first:
+      213: -8910056649314987878
+    second: Control de transmi_21
+  - first:
+      213: -9113972510631275205
+    second: Control de transmi_22
+  - first:
+      213: 1331091106357241162
+    second: Control de transmi_23
+  - first:
+      213: -2639400291649819799
+    second: Control de transmi_24
+  - first:
+      213: -4278323183770626797
+    second: Control de transmi_25
+  - first:
+      213: 887754734012724500
+    second: Control de transmi_26
+  - first:
+      213: -4680681448866198214
+    second: Control de transmi_27
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Control de transmi_0
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 431
+        width: 1665
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a571b0984e0df5b0800000000000000
+      internalID: -5333090678908815963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_1
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 469
+        width: 49
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b9a61cab5f0f550800000000000000
+      internalID: 6192719670092143406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 504
+        width: 71
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 597e86bf57543ab90800000000000000
+      internalID: -7231860203595438187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_3
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 469
+        width: 50
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 888ee9f8e68056770800000000000000
+      internalID: 8603291934110181512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_4
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 445
+        width: 60
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e710d0a73bc02a30800000000000000
+      internalID: 4188571093236193251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_5
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 494
+        width: 67
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eefa224581f870a0800000000000000
+      internalID: -6883486475792744729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_6
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 494
+        width: 47
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17e1532c905545d80800000000000000
+      internalID: -8262885915916689807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_7
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 496
+        width: 20
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 702478b24787dc030800000000000000
+      internalID: 3516599324388049415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_8
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 494
+        width: 63
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2c2a9fed489d3400800000000000000
+      internalID: 305567810230823982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_9
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 494
+        width: 48
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e0ec4ca3d713500800000000000000
+      internalID: 374217935411875368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_10
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 567
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fdc6369770e17610800000000000000
+      internalID: 1617320545428622841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_11
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 567
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ca9f31f3c3f7d530800000000000000
+      internalID: 3879837626894621379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_12
+      rect:
+        serializedVersion: 2
+        x: 1661
+        y: 567
+        width: 36
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 619aeb0f3d493a590800000000000000
+      internalID: -7664118502856414954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 494
+        width: 65
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b5b7b448973efe40800000000000000
+      internalID: 5692048106170332592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_14
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 496
+        width: 62
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b6639d12523504c0800000000000000
+      internalID: -4321992939127216461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_15
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 496
+        width: 45
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60cafcb9d2a78e620800000000000000
+      internalID: 2803625104344329222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_16
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 494
+        width: 64
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7902d031a1852140800000000000000
+      internalID: 4694300715912399231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_17
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 494
+        width: 62
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32a61067c1da8750800000000000000
+      internalID: 6308084882326594106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_18
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 496
+        width: 45
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 735443b8c5e4e6430800000000000000
+      internalID: 3778043296789841207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_19
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 494
+        width: 60
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662252eaa4f48b8d0800000000000000
+      internalID: -2830425183634513306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_20
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 496
+        width: 62
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca2f357f5b8b6720800000000000000
+      internalID: 2840517232092457669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_21
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 494
+        width: 52
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9019f85fae195480800000000000000
+      internalID: -8910056649314987878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_22
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 496
+        width: 100
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b35d52b1a4aa48180800000000000000
+      internalID: -9113972510631275205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_23
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 496
+        width: 21
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a45ea1e0f4cf87210800000000000000
+      internalID: 1331091106357241162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_24
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 494
+        width: 51
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96b662c3b67fe5bd0800000000000000
+      internalID: -2639400291649819799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_25
+      rect:
+        serializedVersion: 2
+        x: 1608
+        y: 496
+        width: 21
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 315980d5bb750a4c0800000000000000
+      internalID: -4278323183770626797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_26
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 494
+        width: 65
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 415ff702a30f15c00800000000000000
+      internalID: 887754734012724500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Control de transmi_27
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 496
+        width: 62
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3dc1958501ea0fb0800000000000000
+      internalID: -4680681448866198214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7d5ff7cea083ccc4398769d2b6134850
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Control de transmi_0: -5333090678908815963
+      Control de transmi_1: 6192719670092143406
+      Control de transmi_10: 1617320545428622841
+      Control de transmi_11: 3879837626894621379
+      Control de transmi_12: -7664118502856414954
+      Control de transmi_13: 5692048106170332592
+      Control de transmi_14: -4321992939127216461
+      Control de transmi_15: 2803625104344329222
+      Control de transmi_16: 4694300715912399231
+      Control de transmi_17: 6308084882326594106
+      Control de transmi_18: 3778043296789841207
+      Control de transmi_19: -2830425183634513306
+      Control de transmi_2: -7231860203595438187
+      Control de transmi_20: 2840517232092457669
+      Control de transmi_21: -8910056649314987878
+      Control de transmi_22: -9113972510631275205
+      Control de transmi_23: 1331091106357241162
+      Control de transmi_24: -2639400291649819799
+      Control de transmi_25: -4278323183770626797
+      Control de transmi_26: 887754734012724500
+      Control de transmi_27: -4680681448866198214
+      Control de transmi_3: 8603291934110181512
+      Control de transmi_4: 4188571093236193251
+      Control de transmi_5: -6883486475792744729
+      Control de transmi_6: -8262885915916689807
+      Control de transmi_7: 3516599324388049415
+      Control de transmi_8: 305567810230823982
+      Control de transmi_9: 374217935411875368
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

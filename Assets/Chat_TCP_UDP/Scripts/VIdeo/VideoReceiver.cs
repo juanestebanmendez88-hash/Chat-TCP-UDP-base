@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class VideoReceiver : MonoBehaviour
 {
-    public UdpVideoClient udpClient; // Reference to UDP server for sending data
+    public UdpVideoClient udpClient;
     public RawImage videoDisplay;
 
     public string serverIp = "127.0.0.1";

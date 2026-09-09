@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class UdpVideoServer : MonoBehaviour
 {
-    private UdpClient udpServer; // UDP client to handle network communication
-    private IPEndPoint remoteEndPoint; // Endpoint to identify the remote client
+    private UdpClient udpServer;
+    private IPEndPoint remoteEndPoint;
 
-    public bool isServerRunning = false; // Flag to check if the server is running
+    public bool isServerRunning = false;
 
     public void StartUDPServer(int port)
     {
-        udpServer = new UdpClient(port); // Initializes the UDP client to listen on the given port
-        remoteEndPoint = new IPEndPoint(IPAddress.Any, port); // Configures the endpoint to accept messages from any IP address on the given port.
+        udpServer = new UdpClient(port);
+        remoteEndPoint = new IPEndPoint(IPAddress.Any, port);
         Debug.Log("Server started. Waiting for client Handshake");
-        udpServer.BeginReceive(ReceiveHandshake, null); // Asynchronous data reception begins
-        isServerRunning = true; // Sets the server running flag to true
+        udpServer.BeginReceive(ReceiveHandshake, null);
+        isServerRunning = true;
     }
 
     private void ReceiveHandshake(IAsyncResult result)
     {
-        byte[] receivedBytes = udpServer.EndReceive(result, ref remoteEndPoint); // Completes data reception and gets the received bytes.
-        string receivedMessage = System.Text.Encoding.UTF8.GetString(receivedBytes); // Converts received bytes to a string
+        byte[] receivedBytes = udpServer.EndReceive(result, ref remoteEndPoint);
+        string receivedMessage = System.Text.Encoding.UTF8.GetString(receivedBytes);
         Debug.Log("Received handshake from client: " + remoteEndPoint);
     }
 

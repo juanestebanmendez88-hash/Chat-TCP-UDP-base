@@ -35,8 +35,8 @@ public class UdpServerUI : MonoBehaviour
             return;
         }
 
-        string message = messageInput.text; // Get the text from the message entry
-        _server.SendMessageAsync(message); // Send message to the client
+        string message = messageInput.text;
+        _server.SendMessageAsync(message);
     }
 
     void HandleMessageReceived(string text)

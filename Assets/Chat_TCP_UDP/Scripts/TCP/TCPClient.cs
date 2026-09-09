@@ -18,34 +18,34 @@ public class TCPClient : MonoBehaviour, IClient
 
     public async Task ConnectToServer(string ip, int port)
     {
-        tcpClient = new TcpClient(); //Creates a new instance of the TcpClient class
+        tcpClient = new TcpClient();
 
-        await tcpClient.ConnectAsync(ip, port); //Asynchronously connects to the server at the specified IP address and port number
-        networkStream = tcpClient.GetStream();// Retrieves the network stream associated with the connected TCP client
+        await tcpClient.ConnectAsync(ip, port);
+        networkStream = tcpClient.GetStream();
 
         isConnected = true;
         Debug.Log("[Client] Connected to server");
-        OnConnected?.Invoke(); // Invokes the OnConnected event, notifying any subscribed listeners that the client has successfully connected to the server
+        OnConnected?.Invoke();
 
-        _ = ReceiveLoop(); //Starts the receive loop in a separate task to continuously listen for incoming messages from the server without blocking the main thread
+        _ = ReceiveLoop();
     }
 
     private async Task ReceiveLoop()
     {
-        byte[] buffer = new byte[1024]; // Buffer to store incoming data from the server, 1024 bytes = 1 KB
+        byte[] buffer = new byte[1024];
 
         try
         {
-            while (tcpClient != null && tcpClient.Connected) // Continuously checks if the client is still connected to the server
+            while (tcpClient != null && tcpClient.Connected)
             {
-                int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length); // Reads data from the network stream asynchronously and stores it in the buffer, returning the number of bytes read
-                if (bytesRead == 0) // If the server is disconnected, ReadAsync returns 0 bytes read
+                int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);
+                if (bytesRead == 0)
                 {
                     Debug.Log("[Client] Server disconnected");
                     break;
                 }
-                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);// Converts the received bytes into a string message using UTF-8 encoding
-                OnMessageReceived?.Invoke(message); // Invokes the OnMessageReceived event, passing the received message to any subscribed listeners
+                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                OnMessageReceived?.Invoke(message);
                 Debug.Log("[Client] Received from server: " + message);
             }
         }
@@ -56,19 +56,19 @@ public class TCPClient : MonoBehaviour, IClient
     }
     public async Task SendMessageAsync(string message)
     {
-        if (!isConnected || networkStream == null) // Checks if there is an active connection to the server before attempting to send a message
+        if (!isConnected || networkStream == null)
         {
             Debug.Log("[Client] Not connected to server");
             return;
         }
 
-        byte[] data = Encoding.UTF8.GetBytes(message);// Converts the message string into a byte array using UTF-8 encoding
-        await networkStream.WriteAsync(data, 0, data.Length);// Writes the byte array to the network stream asynchronously, sending it to the connected server
+        byte[] data = Encoding.UTF8.GetBytes(message);
+        await networkStream.WriteAsync(data, 0, data.Length);
 
         Debug.Log("[Client] Sent: " + message);
     }
 
-    public void Disconnect()// Closes the connection to the server and cleans
+    public void Disconnect()
     {
         isConnected = false;
 
@@ -78,7 +78,7 @@ public class TCPClient : MonoBehaviour, IClient
         networkStream = null;
         tcpClient = null;
 
-        OnDisconnected?.Invoke(); // Invokes the OnDisconnected event, notifying any subscribed listeners that the client has disconnected from the server
+        OnDisconnected?.Invoke();
         Debug.Log("[Client] Disconnected");
     }
 
@@ -88,4 +88,3 @@ public class TCPClient : MonoBehaviour, IClient
         await Task.Delay(100);
     }
 }
-

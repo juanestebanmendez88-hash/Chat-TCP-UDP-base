@@ -7,8 +7,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Recibe los trozos UDP del servidor, rearma cada frame (JPG) y lo muestra como
-// video en un RawImage. El chat sigue por TCP sin enterarse de esto.
 public class WebcamUdpReceiver : MonoBehaviour
 {
     [Header("Red")]
@@ -17,19 +15,18 @@ public class WebcamUdpReceiver : MonoBehaviour
 
     [Header("UI")]
     public RawImage videoDisplay;
-    public TMP_Text infoLabel;             // opcional: "UDP 5556 - 18 FPS - 640x480"
+    public TMP_Text infoLabel;
 
     private UdpClient socket;
     private IPEndPoint serverEndPoint;
 
-    // Trozos que se estan juntando, indexados por numero de frame.
     private readonly Dictionary<int, FrameAssembly> assembling = new Dictionary<int, FrameAssembly>();
     private readonly List<int> toRemove = new List<int>();
     private int lastShownFrame;
     private volatile int framesReceived;
 
     private readonly object gate = new object();
-    private byte[] pendingJpg;              // ultimo frame completo, esperando a pintarse
+    private byte[] pendingJpg;
 
     private Texture2D texture;
 
@@ -38,7 +35,7 @@ public class WebcamUdpReceiver : MonoBehaviour
     private float fpsTimer;
     private bool connected;
 
-    private const int HeaderSize = 8;      // 4 bytes frameId + 2 chunkIndex + 2 chunkCount
+    private const int HeaderSize = 8;
 
     void Start()
     {
@@ -46,13 +43,12 @@ public class WebcamUdpReceiver : MonoBehaviour
         UpdateInfoLabel();
     }
 
-    // Se dispara desde el mismo boton "Connect to Server" del chat (segunda entrada en On Click).
     public void Connect()
     {
-        if (socket != null) return;           // ya conectado
+        if (socket != null) return;
 
         serverEndPoint = new IPEndPoint(IPAddress.Parse(serverIp), serverPort);
-        socket = new UdpClient();             // puerto local automatico
+        socket = new UdpClient();
         IgnoreUdpConnReset(socket);
         socket.BeginReceive(OnPacket, null);
 
@@ -62,8 +58,6 @@ public class WebcamUdpReceiver : MonoBehaviour
         Debug.Log("[VideoRX] Conectando al video en " + serverEndPoint);
     }
 
-    // Windows: sin esto, si un datagrama "rebota" (el puerto destino aun no escucha),
-    // el siguiente Receive lanza SocketException 10054 y mata el bucle de recepcion.
     private static void IgnoreUdpConnReset(UdpClient client)
     {
         try
@@ -71,10 +65,9 @@ public class WebcamUdpReceiver : MonoBehaviour
             const int SIO_UDP_CONNRESET = -1744830452;
             client.Client.IOControl(SIO_UDP_CONNRESET, new byte[] { 0, 0, 0, 0 }, null);
         }
-        catch { /* otra plataforma: no aplica */ }
+        catch {  }
     }
 
-    // UDP no garantiza entrega: repetimos el saludo hasta que empiecen a llegar frames.
     private IEnumerator SayHelloUntilConnected()
     {
         byte[] hello = System.Text.Encoding.UTF8.GetBytes("HELLO");
@@ -94,7 +87,7 @@ public class WebcamUdpReceiver : MonoBehaviour
             byte[] data = socket.EndReceive(ar, ref from);
             HandlePacket(data);
         }
-        catch (ObjectDisposedException) { return; }   // socket cerrado: no re-armar
+        catch (ObjectDisposedException) { return; }
         catch (Exception e) { Debug.LogWarning("[VideoRX] " + e.Message); }
 
         try { socket.BeginReceive(OnPacket, null); }
@@ -109,13 +102,13 @@ public class WebcamUdpReceiver : MonoBehaviour
         int chunkIndex = BitConverter.ToUInt16(data, 4);
         int chunkCount = BitConverter.ToUInt16(data, 6);
         if (chunkCount == 0 || chunkIndex >= chunkCount) return;
-        if (frameId <= lastShownFrame) return;             // frame viejo, ya mostramos uno mas nuevo
+        if (frameId <= lastShownFrame) return;
 
         if (!assembling.TryGetValue(frameId, out FrameAssembly f))
         {
             f = new FrameAssembly(chunkCount);
             assembling[frameId] = f;
-            Prune(frameId - 4);                            // no acumular incompletos viejos
+            Prune(frameId - 4);
         }
 
         if (f.parts[chunkIndex] == null)
@@ -139,7 +132,6 @@ public class WebcamUdpReceiver : MonoBehaviour
         }
     }
 
-    // Bota del diccionario los frames con numero menor al umbral.
     private void Prune(int minKeep)
     {
         toRemove.Clear();
@@ -173,7 +165,6 @@ public class WebcamUdpReceiver : MonoBehaviour
         }
     }
 
-    // Estado que ve el usuario en el panel del cliente.
     private void UpdateInfoLabel()
     {
         if (infoLabel == null) return;
@@ -194,7 +185,6 @@ public class WebcamUdpReceiver : MonoBehaviour
         socket?.Close();
     }
 
-    // Guarda los trozos de un frame hasta tenerlos todos.
     private class FrameAssembly
     {
         public readonly byte[][] parts;

@@ -1,4 +1,4 @@
-using System; 
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class TCPServer : MonoBehaviour, IServer
 {
-    private TcpListener tcpListener; // TCP server declaration
-    private TcpClient connectedClient; // Connected client declaration
-    private NetworkStream networkStream; // Network data stream
+    private TcpListener tcpListener;
+    private TcpClient connectedClient;
+    private NetworkStream networkStream;
 
     public bool isServerRunning { get; private set; }
 
@@ -19,15 +19,15 @@ public class TCPServer : MonoBehaviour, IServer
 
     public async Task StartServer(int port)
     {
-        tcpListener = new TcpListener(IPAddress.Any, port); // Configures the TCP server to listen on any IP and the specified port
-        tcpListener.Start(); // Starts the TCP server
+        tcpListener = new TcpListener(IPAddress.Any, port);
+        tcpListener.Start();
 
-        Debug.Log("[Server] Server started, waiting for connections..."); // Displays a message in the Unity console indicating that the server has started
+        Debug.Log("[Server] Server started, waiting for connections...");
         isServerRunning = true;
 
-        connectedClient = await tcpListener.AcceptTcpClientAsync(); //The server start listens for incoming client connections asynchronously
+        connectedClient = await tcpListener.AcceptTcpClientAsync();
         Debug.Log("[Server] Client connected: " + connectedClient.Client.RemoteEndPoint);
-        OnConnected?.Invoke(); // Invokes the OnConnected event, notifying any subscribed listeners that a client has connected
+        OnConnected?.Invoke();
 
         networkStream = connectedClient.GetStream();
         _ = ReceiveLoop();
@@ -35,45 +35,45 @@ public class TCPServer : MonoBehaviour, IServer
 
     private async Task ReceiveLoop()
     {
-        byte[] buffer = new byte[1024];// Buffer to store incoming data from the client 1024 bytes = 1 KB
+        byte[] buffer = new byte[1024];
         try
         {
-            while (connectedClient != null && connectedClient.Connected)// Continuously checks if the client is still connected
+            while (connectedClient != null && connectedClient.Connected)
             {
-                int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);// Reads data from the network stream asynchronously and stores it in the buffer, returning the number of bytes read
+                int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);
 
-                if (bytesRead == 0)//If the client is disconnected ReadAsync returns 0 bytes read
+                if (bytesRead == 0)
                 {
                     Debug.Log("[Server] Client disconnected");
                     break;
                 }
 
-                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);// Converts the received bytes into a string message using UTF-8 encoding
+                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                 Debug.Log("[Server] Received: " + message);
-                OnMessageReceived?.Invoke(message);// Invokes the OnMessageReceived event, passing the received message to any subscribed listeners
+                OnMessageReceived?.Invoke(message);
             }
         }
         finally
         {
-            Disconnect();// Ensures that the connection is closed when the loop ends, whether due to disconnection or an error
+            Disconnect();
         }
     }
 
     public async Task SendMessageAsync(string message)
     {
-        if (networkStream == null || !connectedClient.Connected)// Checks if there is an active connection to a client before attempting to send a message
+        if (networkStream == null || !connectedClient.Connected)
         {
             Debug.Log("[Server] No client connected");
             return;
         }
 
-        byte[] data = Encoding.UTF8.GetBytes(message);// Converts the message string into a byte array using UTF-8 encoding
-        await networkStream.WriteAsync(data, 0, data.Length);// Writes the byte array to the network stream asynchronously, sending it to the connected client
+        byte[] data = Encoding.UTF8.GetBytes(message);
+        await networkStream.WriteAsync(data, 0, data.Length);
 
         Debug.Log("[Server] Sent: " + message);
     }
 
-    public void Disconnect() // Closes the connection to the client and cleans up resources
+    public void Disconnect()
     {
         networkStream?.Close();
         connectedClient?.Close();
@@ -82,7 +82,7 @@ public class TCPServer : MonoBehaviour, IServer
         connectedClient = null;
 
         Debug.Log("[Server] Disconnected");
-        OnDisconnected?.Invoke(); // Invokes the OnDisconnected event, notifying any subscribed listeners that the client has disconnected
+        OnDisconnected?.Invoke();
     }
 
     private async void OnDestroy()
@@ -91,4 +91,3 @@ public class TCPServer : MonoBehaviour, IServer
         await Task.Delay(100);
     }
 }
-

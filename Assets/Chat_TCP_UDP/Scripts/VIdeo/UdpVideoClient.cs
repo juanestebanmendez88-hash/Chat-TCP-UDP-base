@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class UdpVideoClient : MonoBehaviour
 {
-    private UdpClient udpClient; // UDP client to handle network communication
-    private IPEndPoint remoteEndPoint; // Endpoint to identify the remote server
-    public bool isServerConnected = false; // Flag to check if the client is connected to the server
- 
+    private UdpClient udpClient;
+    private IPEndPoint remoteEndPoint;
+    public bool isServerConnected = false;
 
-    public Action<byte[]> OnImageReceived; // Event triggered when a new image is received
+    public Action<byte[]> OnImageReceived;
 
     public void StartUDPClient(string ipAddress, int port)
     {
-        udpClient = new UdpClient(); // Initializes the UDP client without binding to any local port
-        remoteEndPoint = new IPEndPoint(IPAddress.Parse(ipAddress), port); // Sets the remote server endpoint using the given IP address and port
-        udpClient.BeginReceive(ReceiveImage, null); // Starts receiving data from the server asynchronously
+        udpClient = new UdpClient();
+        remoteEndPoint = new IPEndPoint(IPAddress.Parse(ipAddress), port);
+        udpClient.BeginReceive(ReceiveImage, null);
         SendHandshake();
-        isServerConnected = true; // Sets the client connected flag to true
+        isServerConnected = true;
     }
 
     private void ReceiveImage(IAsyncResult result)
@@ -31,13 +30,13 @@ public class UdpVideoClient : MonoBehaviour
         {
             OnImageReceived?.Invoke(receivedBytes);
         }
-        udpClient.BeginReceive(ReceiveImage, null); // seguir escuchando
+        udpClient.BeginReceive(ReceiveImage, null);
     }
 
     public void SendHandshake()
     {
-        byte[] sendBytes = System.Text.Encoding.UTF8.GetBytes("Hi"); // Converts the message into a byte array
-        udpClient.Send(sendBytes, sendBytes.Length, remoteEndPoint); // Sends the bytes to the remote server using UDP
+        byte[] sendBytes = System.Text.Encoding.UTF8.GetBytes("Hi");
+        udpClient.Send(sendBytes, sendBytes.Length, remoteEndPoint);
     }
 
 }

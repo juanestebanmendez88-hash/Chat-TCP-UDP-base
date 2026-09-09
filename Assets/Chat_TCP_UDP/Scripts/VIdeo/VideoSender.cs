@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class VideoSender : MonoBehaviour
 {
-    public UdpVideoServer udpServer; // Reference to UDP server for sending data
+    public UdpVideoServer udpServer;
 
     public int captureWidth = 480;
     public int captureHeight = 270;
@@ -13,11 +13,10 @@ public class VideoSender : MonoBehaviour
 
     private WebCamTexture webcamTexture;
     public Texture2D captureTexture;
-    private Color32[] capturePixels;              
+    private Color32[] capturePixels;
     private bool sending = false;
 
-    public RawImage videoDisplay; 
-
+    public RawImage videoDisplay;
 
     private void Start()
     {
@@ -25,7 +24,6 @@ public class VideoSender : MonoBehaviour
         StartCoroutine(CaptureLoop());
     }
 
-    
     public void StartSending()
     {
         if (sending) return;
@@ -33,7 +31,6 @@ public class VideoSender : MonoBehaviour
         StartCoroutine(CaptureLoop());
     }
 
-    // Stop sending and cleanup
     public void StopSending()
     {
         sending = false;
